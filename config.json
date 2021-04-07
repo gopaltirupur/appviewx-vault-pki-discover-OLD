@@ -1,0 +1,53 @@
+{
+    "appviewx_is_https": true,
+    "appviewx_host": "192.168.142.132",
+    "appviewx_port": 5300,
+    "appviewx_username": "admin",
+    "appviewx_password": "",
+    "vaults":[
+        {
+            "vault_is_https": false,
+            "vault_host": "127.0.0.1",
+            "vault_api_port": 5920,
+            "pki_engines":[
+                {
+                    "name":"pki-1",
+                    "list_path":"certs",
+                    "get_path":"cert"
+                },
+                {
+                    "name":"appviewx-pki",
+                    "list_path":"certs",
+                    "get_path":"certs",
+                    "request_query":{
+                        "config":"appviewx_138"
+                    }
+                }
+            ],
+            "auto_discover_pki_engines":true,
+            "vault_token": "s.XFJpBe1fgIlKzZyvNm2zhC9V"
+        },
+        {
+            "vault_is_https": false,
+            "vault_host": "127.0.0.1",
+            "vault_api_port": 5920,
+            "pki_engines":[
+                {
+                    "name":"pki-1",
+                    "list_path":"certs",
+                    "get_path":"cert"
+                },
+                {
+                    "name":"appviewx-pki",
+                    "list_path":"certs",
+                    "get_path":"certs",
+                    "request_query":{
+                        "config":"appviewx_138"
+                    }
+                }
+            ],
+            "auto_discover_pki_engines":true,
+            "vault_token": "s.XFJpBe1fgIlKzZyvNm2zhC9V"
+        }
+    ]    
+}
