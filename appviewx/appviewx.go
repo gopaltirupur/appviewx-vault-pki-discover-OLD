@@ -27,12 +27,13 @@ const (
 
 //AppViewXEnv to contain the appviewx environment details
 type AppViewXEnv struct {
-	IsHTTPS   bool   `json:"appviewx_is_https"`
-	Host      string `json:"appviewx_host"`
-	Port      int    `json:"appviewx_port"`
-	UserName  string `json:"appviewx_username"`
-	Password  string `json:"appviewx_password"`
-	sessionID string
+	IsHTTPS          bool   `json:"appviewx_is_https"`
+	Host             string `json:"appviewx_host"`
+	Port             int    `json:"appviewx_port"`
+	UserName         string `json:"appviewx_username"`
+	Password         string `json:"appviewx_password"`
+	sessionID        string
+	InstallationPath string `json:"installation_path"`
 }
 
 type CertGroupUpdateRequest struct {

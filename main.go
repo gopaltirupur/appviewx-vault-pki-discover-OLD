@@ -130,7 +130,7 @@ func getInstallCommand() *cobra.Command {
 
 func setLogLevel() (err error) {
 	if logOutput == "file" {
-		logFile := filepath.Join(common.GetHome(), common.INSTALLATION_DIRECTORY_NAME, common.LOG_FILE_NAME)
+		logFile := filepath.Join(common.GetHome(config.GetInstallationPath(configFileNameFlag)), common.INSTALLATION_DIRECTORY_NAME, common.LOG_FILE_NAME)
 		f, errInner := os.OpenFile(logFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 		log.SetOutput(f)
 
@@ -164,7 +164,7 @@ func install(cmd *cobra.Command, args []string) {
 	}
 
 	log.Info("Starting install")
-	installationPath := filepath.Join(common.GetHome(), common.INSTALLATION_DIRECTORY_NAME)
+	installationPath := filepath.Join(common.GetHome(config.GetInstallationPath(configFileNameFlag)), common.INSTALLATION_DIRECTORY_NAME)
 
 	log.Info("Installation path ", installationPath)
 
@@ -213,7 +213,7 @@ func install(cmd *cobra.Command, args []string) {
 func getSubCommandsAndArguments() (output string) {
 	output += (" discover ")
 	output += (" -f=" + vaultCertificateField + " ")
-	output += (` -c="` + filepath.Join(common.GetHome(), common.INSTALLATION_DIRECTORY_NAME, common.CONFIG_FILE_NAME) + `" `)
+	output += (` -c="` + filepath.Join(common.GetHome(config.GetInstallationPath(configFileNameFlag)), common.INSTALLATION_DIRECTORY_NAME, common.CONFIG_FILE_NAME) + `" `)
 	output += (" -l=" + logLevel)
 	output += " -o=file "
 
@@ -243,6 +243,8 @@ func copyFileToInstallationDirectory(fileNameWithPath, installationPath, targetF
 }
 
 func resetLocalCache(cmd *cobra.Command, args []string) {
+	ldb.StartDB(config.GetInstallationPath(configFileNameFlag))
+
 	err := setLogLevel()
 	if err != nil {
 		return
@@ -250,7 +252,7 @@ func resetLocalCache(cmd *cobra.Command, args []string) {
 
 	log.Info("Starting resetLocalCache")
 
-	leveldbFolderPath := filepath.Join(common.GetHome(), common.INSTALLATION_DIRECTORY_NAME, common.LEVEL_DB_FOLDER_NAME)
+	leveldbFolderPath := filepath.Join(common.GetHome(config.GetInstallationPath(configFileNameFlag)), common.INSTALLATION_DIRECTORY_NAME, common.LEVEL_DB_FOLDER_NAME)
 	log.Debug("FolderName for Remove : ", leveldbFolderPath)
 
 	err = os.RemoveAll(leveldbFolderPath)
@@ -265,6 +267,8 @@ func resetLocalCache(cmd *cobra.Command, args []string) {
 }
 
 func displayList(cmd *cobra.Command, args []string) {
+	ldb.StartDB(config.GetInstallationPath(configFileNameFlag))
+
 	err := setLogLevel()
 	if err != nil {
 		return
@@ -319,6 +323,8 @@ func setValueFromVault(hashiCorpVaultEnv *vault.HashicorpVaultEnv, vault *vault.
 }
 
 func carryoutDiscovery(cmd *cobra.Command, args []string) {
+	ldb.StartDB(config.GetInstallationPath(configFileNameFlag))
+
 	err := setLogLevel()
 	if err != nil {
 		return
