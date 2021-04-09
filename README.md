@@ -30,7 +30,7 @@ Before configuring the AppViewX Vault PKI discover plugin, the below prerequisit
 	```
 - Change the working directory to **appviewx-vault-pki-discover**  and update the AppViewX Instance and Vault Instance host details in the config.json file.
 	```bash
-		cd <installdirectory>/appviewx-vault-pki-discover/
+	cd <installdirectory>/appviewx-vault-pki-discover/
 	```
  - Sample config file
 	```
@@ -106,4 +106,6 @@ Execute the below command for help.
 ```bash
  </install_path_plugin/>/appviewx_vault_util -h
  ```
-To run the appviewx vault discover plugin on a scheduled mode, the user can configure cron on the linux machine and configure the absolute path where the plugin is installed in the cron.
+To run the appviewx vault discover plugin on a scheduled mode, the user can configure cron on the linux machine and relate to the absolute path where the plugin is installed.
+
+
