@@ -4,7 +4,7 @@ The vault pki discover plugin enables the users to enhance visibility and govern
 
 The certificates which are issued by Vault are automatically discovered and managed by AppViewX Cert+ platform. Additionally the users are enabled with visibility of all the discovered certificates in a single pane of glass view along with life cycle management of the certificates and enforcement of policy to ensure compliance with enterprise security policy. 
 
-The platform also enables the users to have a better control of the certificates with flexible monitoring and reporting features.
+The platform also enables the users to have a better control of the ssl certificates with flexible monitoring and reporting features.
 
 ![AppViewX Vault PKI Discover](https://github.com/vigneshkathir/appviewx-vault-pki-discover/blob/main/images/AppViewX-Vault-PKI-Discover.jpeg)
 
