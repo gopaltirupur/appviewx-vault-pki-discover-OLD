@@ -3,6 +3,7 @@ package config
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"vault_util/appviewx"
 	"vault_util/vault"
@@ -38,4 +39,12 @@ func GetEnvironments(fileNameWithPath string) (appViewX *appviewx.AppViewXEnv, h
 	}
 	log.Debug("Finished GetEnvironments")
 	return &appViewXEnv, &hashicorpVaultEnv, nil
+}
+
+func GetInstallationPath(fileNameWithPath string) (installationPath string) {
+	appviewx, _, err := GetEnvironments(fileNameWithPath)
+	if err != nil {
+		fmt.Println("Error in getting the environments ", err, fileNameWithPath)
+	}
+	return appviewx.InstallationPath
 }

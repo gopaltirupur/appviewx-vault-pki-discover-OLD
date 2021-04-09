@@ -13,13 +13,13 @@ import (
 //DB to hold the leveldb instance
 var DB *leveldb.DB
 
-func init() {
+func StartDB(installationPath string) {
 	var err error
 
-	leveldbFolderPath := filepath.Join(common.GetHome(), common.INSTALLATION_DIRECTORY_NAME, common.LEVEL_DB_FOLDER_NAME)
+	leveldbFolderPath := filepath.Join(common.GetHome(installationPath), common.INSTALLATION_DIRECTORY_NAME, common.LEVEL_DB_FOLDER_NAME)
 	DB, err = leveldb.OpenFile(leveldbFolderPath, nil)
 	if err != nil {
-		log.Println("Error in Opening the file for db : ", leveldbFolderPath)
+		log.Println("Error in Opening the file for db : ", err, leveldbFolderPath)
 		os.Exit(1)
 	}
 	// log.Println("DB Started", DB)

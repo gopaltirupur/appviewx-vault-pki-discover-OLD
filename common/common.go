@@ -154,10 +154,15 @@ func MakeGetCallAndReturnResponse(url string, headers map[string]string, queryPa
 }
 
 //GetHome - This method to get the home folder location
-func GetHome() (output string) {
-	output, err := os.UserHomeDir()
-	if err != nil {
-		fmt.Println("Error in getting the user user home directory :", err)
+func GetHome(configBasePath string) (output string) {
+	if configBasePath == "" {
+		var err error
+		output, err = os.UserHomeDir()
+		if err != nil {
+			fmt.Println("Error in getting the user user home directory :", err)
+		}
+	} else {
+		output = configBasePath
 	}
 	return
 }

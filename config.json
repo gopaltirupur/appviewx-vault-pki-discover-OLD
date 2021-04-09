@@ -1,9 +1,10 @@
 {
     "appviewx_is_https": true,
-    "appviewx_host": "192.168.142.132",
+    "appviewx_host": "<APPVIEWX_HOST>",
     "appviewx_port": 5300,
     "appviewx_username": "admin",
     "appviewx_password": "",
+    "installation_path":"",
     "vaults":[
         {
             "vault_is_https": false,
@@ -25,7 +26,7 @@
                 }
             ],
             "auto_discover_pki_engines":true,
-            "vault_token": "s.XFJpBe1fgIlKzZyvNm2zhC9V"
+            "vault_token": "s.KMi8L1bKK5V3D5ePjnY90iWh"
         },
         {
             "vault_is_https": false,
@@ -47,7 +48,7 @@
                 }
             ],
             "auto_discover_pki_engines":true,
-            "vault_token": "s.XFJpBe1fgIlKzZyvNm2zhC9V"
+            "vault_token": "s.KMi8L1bKK5V3D5ePjnY90iWh"
         }
     ]    
 }
