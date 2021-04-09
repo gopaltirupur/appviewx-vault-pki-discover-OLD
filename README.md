@@ -106,4 +106,4 @@ Execute the below command for help.
 ```bash
  </install_path_plugin/>/appviewx_vault_util -h
  ```
-To run the appviewx vault discover plugin on a scheduled mode, the user can configure cron on the linux machine and relate to the absolute path where the plugin is installed.
+To run the appviewx vault discover plugin on a scheduled mode, the user can configure cron on the linux machine and configure the absolute path where the plugin is installed in the cron.
