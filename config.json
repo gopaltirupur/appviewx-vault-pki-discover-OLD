@@ -2,8 +2,7 @@
     "appviewx_is_https": true,
     "appviewx_host": "192.168.142.132",
     "appviewx_port": 5300,
-    "appviewx_username": "admin",
-    "appviewx_password": "",
+    "appviewx_username": "admin",    
     "installation_path":"",
     "vaults":[
         {
