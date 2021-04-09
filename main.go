@@ -12,7 +12,6 @@ import (
 	"vault_util/appviewx"
 	"vault_util/common"
 	"vault_util/config"
-	"vault_util/cron"
 	"vault_util/security"
 	"vault_util/vault"
 
@@ -29,7 +28,6 @@ var configFileNameFlag string
 var vaultCertificateField string
 var logLevel string
 var logOutput string
-var installCronString string
 
 const (
 	concurrentNumber = 10
@@ -57,11 +55,11 @@ func main() {
 		"appviewx_is_https": true,
 		"appviewx_host": "<appviewx_host_name>",
 		"appviewx_port": <appviewx_api_port>,
-		"appviewx_username": "admin",
-		"appviewx_password": "",
+		"appviewx_username": "admin",		
 		"vault_is_https": false,
 		"vault_host": "<vault_host_name>",
 		"vault_api_port": <vault_api_port>,
+		"installation_path":"/tmp/test",
 		"pki_engines":[
 			{
 				"name":"pki-1",
@@ -86,9 +84,6 @@ func main() {
 	discoveryCmd.Flags().StringVarP(&vaultCertificateField, "vault_certificate_field", "f", "certificate", `field name of certificate in get certificate resonse from vault`)
 	install.Flags().StringVarP(&vaultCertificateField, "vault_certificate_field", "f", "certificate", `field name of certificate in get certificate resonse from vault - 
 will be used during installation`)
-	install.Flags().StringVarP(&installCronString, "install_cron_string", "r", "0 1 * * *", `cron string to invoke discovery ( 'Minute' 'Hour' 'Day Of Month' 'Month' 'Day Of Week')
-Example :     15 6 2 1 *    
-		January 2 at 6:15 `)
 	rootCmd.Execute()
 }
 
@@ -121,9 +116,9 @@ func getResetLocalCacheCommand() *cobra.Command {
 
 func getInstallCommand() *cobra.Command {
 	return &cobra.Command{
-		Use:   "install installs the utility and 'discover' subcommand invoked using cron - default cron ( 0 1 * * * ) ",
-		Short: "Install the utility and 'discover' subcommand invoked using cron - default cron ( 0 1 * * * )  ",
-		Long:  "Install the utility and 'discover' subcommand invoked using cron - default cron ( 0 1 * * * )  ",
+		Use:   "install installs the utility",
+		Short: "Install the utility",
+		Long:  "Install the utility",
 		Run:   install,
 	}
 }
@@ -158,6 +153,8 @@ func setLogLevel() (err error) {
 }
 
 func install(cmd *cobra.Command, args []string) {
+	ldb.StartDB(config.GetInstallationPath(configFileNameFlag))
+
 	err := setLogLevel()
 	if err != nil {
 		return
@@ -168,7 +165,7 @@ func install(cmd *cobra.Command, args []string) {
 
 	log.Info("Installation path ", installationPath)
 
-	err = os.MkdirAll(installationPath, 0666)
+	err = os.MkdirAll(installationPath, 0777)
 	if err != nil {
 		log.Error("Error in creating the installation directory : ", err)
 		return
@@ -184,9 +181,9 @@ func install(cmd *cobra.Command, args []string) {
 	// configFile := filepath.Join(currentWorkingDirectory, common.CONFIG_FILE_NAME)
 	copyFileToInstallationDirectory(configFileNameFlag, installationPath, common.CONFIG_FILE_NAME)
 
-	installationPathWithBinary := filepath.Join(installationPath, common.INSTALLATION_DIRECTORY_NAME)
-	subCommandsAndArguments := getSubCommandsAndArguments()
-	cron.PutEntryInCron(installCronString, installationPathWithBinary, subCommandsAndArguments)
+	// installationPathWithBinary := filepath.Join(installationPath, common.INSTALLATION_DIRECTORY_NAME)
+	// subCommandsAndArguments := getSubCommandsAndArguments()
+	// cron.PutEntryInCron(installCronString, installationPathWithBinary, subCommandsAndArguments)
 
 	fmt.Println("Enter AppViewX Password : ")
 	passwordContents, err := terminal.ReadPassword(int(syscall.Stdin))
