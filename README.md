@@ -23,15 +23,16 @@ Before configuring the AppViewX Vault PKI discover plugin, the below prerequisit
 ## Installation Steps
 
  -    Download appviewx-vault-pki-discover from the github.com to the machine where the plugin to be installed.
-	 ```bash
-     git clone https://github.com/AppViewX/appviewx-vault-pki-discover.git
-     ```
- -   Change the working directory to **appviewx-vault-pki-discover**  and update the AppViewX Instance and Vault Instance host details in the config.json file.
-    ```bash
+```bash
+	git clone https://github.com/AppViewX/appviewx-vault-pki-discover.git
+```
+  -   Change the working directory to **appviewx-vault-pki-discover**  and update the AppViewX Instance and Vault Instance host details in the config.json file.
+```bash
      cd <installdirectory>/appviewx-vault-pki-discover/
-    ```
+```
+
  - Sample config file
-	```
+```
 	{
 	"appviewx_is_https": true,  
 	"appviewx_host": "<AppViewX Host>",
@@ -64,6 +65,7 @@ Before configuring the AppViewX Vault PKI discover plugin, the below prerequisit
 		}
 	]
 	}
+```
 > Note : The config in the sample provides the capability to discover ssl certificates from multiple vaults with the option to auto discover PKI engines on vault or either fallback to discover certificate from specified PKI engine. 
  - Access to vault can be restricted with privilege to list and read ssl certificates by configuring vault policy and associating the policy to a user token. The token should be updated in the config.json.
  - Execute the below step to install the plugin.
